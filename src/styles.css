@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+/*@import "~@angular/material/prebuilt-themes/indigo-pink.css";*/
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing.dark-backdrop {
+  background: #000;
+  opacity: 0.85 !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+*{
+  margin:0;
+  padding:0;
+}
+
+body {
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing.dark-backdrop {
+  background: #000;
+  opacity: 0.85 !important;
+}
+
+body, html, body > .container {
+  height:100%;
+}
+
+.success-snackbar {
+  margin-top: 150px !important;
+  color: white;
+  background: green;
+}
+
+.error-snackbar {
+  margin-top: 150px !important;
+  color: white;
+  background: red;
+}

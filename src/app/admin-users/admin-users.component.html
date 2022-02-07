@@ -1,0 +1,34 @@
+<app-admin-nav>
+  <mat-card class="form-card center">
+    <h1>Сотрудники</h1>
+    <div class="form-outline"> 
+      <input class="form-control" type="search" [(ngModel)]="queryString" id="search" placeholder="Search to login">
+
+    </div>
+    <table class="table table-striped" matSort (matSortChange)="sortData($event)">
+      <thead>
+        <tr>
+          <td mat-sort-header="Name">Имя</td>
+          <td mat-sort-header="Surname">Фамилия</td>
+          <td mat-sort-header="UserName">Логин</td>
+          <td mat-sort-header="Email">Почта</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of sortedData | FilterPipe: queryString">
+          <td>{{user.Name}}</td>
+          <td>{{user.Surname}}</td>
+          <td>{{user.UserName}}</td>
+          <td>{{user.Email}}</td>
+
+          <td style="width:125px">
+            <input type="button" value="Delete" (click)="deleteUser(user.Id)" class="btn btn-danger" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </mat-card>
+</app-admin-nav>

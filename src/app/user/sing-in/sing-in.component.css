@@ -1,0 +1,31 @@
+.login-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.field-full-width {
+  width: 100%;
+}
+
+.login-card {
+  max-width: 400px;
+}
+
+.center{
+  width: 75%;
+  margin: 80px auto;
+}
+
+button {
+  margin-top: 15px;
+}
+
+.error-message {
+  color: red;
+  margin: 5px 50px;
+}
+.registration {
+  display: inline-block;
+  margin-left: 50px;
+}

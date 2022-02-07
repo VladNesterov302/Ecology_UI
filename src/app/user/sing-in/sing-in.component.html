@@ -1,0 +1,29 @@
+<mat-card class="login-card center">
+  <mat-card-header>
+    <mat-card-title>Система мониторинга состояния окружающей среды</mat-card-title>
+    <mat-card-subtitle>Авторизация</mat-card-subtitle>
+  </mat-card-header>
+  <div *ngIf="isLoginError" class="error-message">
+    <i class="material-icons">error</i> Неверный логин или пароль
+  </div>
+  <ngx-spinner bdColor = "rgba(51, 51, 51, 0.8)"
+              size = "medium"
+              color = "#ffffff"
+              type = "line-spin-fade">
+  </ngx-spinner>
+
+  <form #loginForm="ngForm" class="login-form">
+    <mat-form-field class="field-full-width">
+      <input matInput #UserName ngModel name="UserName" placeholder="Логин" value="" required>
+    </mat-form-field>
+    <mat-form-field class="field-full-width">
+      <input matInput type="password" #Password ngModel name="Password" placeholder="Пароль" value="" required>
+    </mat-form-field>
+
+
+    <div style="display:inline-block">
+      <button mat-raised-button color="primary" [disabled]="!loginForm.valid" (click)="OnSubmit(UserName.value, Password.value)">Войти</button>
+    </div>
+
+  </form>
+</mat-card>

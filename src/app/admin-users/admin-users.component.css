@@ -1,0 +1,31 @@
+.form {
+  min-width: 150px;
+  max-width: 1500px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-card {
+  max-width: 1500px;
+}
+
+.center {
+  width: 90%;
+  margin: 50px auto;
+}
+
+.submit-button {
+  margin-top: 20px;
+}
+.btn{
+    width:125px !important;
+}
+#search {
+  width: 30%; 
+  font-size: 16px; 
+  padding: 12px 20px 12px 12px; 
+  margin-bottom: 12px; 
+}

@@ -1,0 +1,40 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+  box-shadow: 3px 0 6px #558b2f;
+}
+
+/*.sidenav .mat-toolbar {
+  background: inherit;
+}*/
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.mat-badge-content {
+  right: 0px !important;
+}
+
+.mat-list-item {
+  box-shadow: 3px 0 6px #558b2f;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+  .mat-list-item:hover {
+    background-color: #b2dfdb;
+  }
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+button {
+  margin: 0 10px;
+}

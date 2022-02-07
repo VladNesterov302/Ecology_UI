@@ -1,0 +1,25 @@
+.profile-card {
+  min-width: 500px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.icon {
+  font-size: 30px;
+}
+
+.center {
+  width: 75%;
+  margin: 80px auto;
+}
+
+.info {
+  display: inline-block;
+  margin-left: 15px;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 16px;
+  padding-bottom: 15px;
+  vertical-align: middle;
+  margin-bottom: 0;
+}
