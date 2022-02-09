@@ -9,11 +9,13 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { AdminCityComponent } from './admin-city/admin-city.component';
 import { AdminWaterObjectComponent } from './admin-water-object/admin-water-object.component';
+import { UserRadiationComponent } from './user-radiation/user-radiation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main-page', pathMatch : 'full'},
   { path: 'main-page', component: MainPageComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'user-radiation', component: UserRadiationComponent },
   { path: 'admin-home', component: AdminHomeComponent },
   { path: 'admin-users', component: AdminUsersComponent },
   { path: 'admin-user-register', component: UserRegisterComponent },

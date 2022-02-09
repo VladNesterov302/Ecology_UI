@@ -1,0 +1,102 @@
+<app-main-nav>
+  <mat-card class="form-card center" *ngIf="editRadiation">
+    <mat-card-header>
+      <mat-card-title>Редактирование показателей радиации</mat-card-title>
+    </mat-card-header>
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)"
+                 size="medium"
+                 color="#ffffff"
+                 type="line-spin-fade">
+    </ngx-spinner>
+
+    <form class="form ng-pristine ng-untouched ng-valid" #newForm="ngForm" novalidate="">
+
+      <div class="form-group">
+
+        <mat-form-field class="input-width">
+          <input matInput placeholder="Доза" [(ngModel)]="editRadiationField.Dose" name="Dose" required>
+        </mat-form-field>
+
+
+
+
+        <mat-form-field class="input-width">
+          <mat-select placeholder="Населенный пункт" [(ngModel)]="editRadiationField.IdCity" name="IdCity">
+            <mat-option *ngFor="let city of cities" [value]="city.Id">
+              {{city.City}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div style="display:inline-block">
+        <button mat-raised-button color="primary" [disabled]="!newForm.valid" (click)="EditRadiation()">Изменить</button>
+      </div>
+
+    </form>
+  </mat-card>
+  <mat-card class="form-card center">
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)"
+                 size="medium"
+                 color="#ffffff"
+                 type="line-spin-fade">
+    </ngx-spinner>
+    <form #Form="ngForm" class="form-card ">
+      <mat-form-field class="input-width">
+        <input matInput [(ngModel)]="newRadiation.Dose" name="Dose" placeholder="Доза" required>
+      </mat-form-field>
+
+      <mat-form-field class="input-width">
+        <mat-select placeholder="Населенный пункт" [(ngModel)]="newRadiation.IdCity" name="IdCity">
+          <mat-option *ngFor="let city of cities" [value]="city.Id">
+            {{city.City}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div style="display:inline-block">
+        <button mat-raised-button color="primary" [disabled]="!Form.valid" (click)="AddRadiation()">
+          Добавить
+        </button>
+      </div>
+
+    </form>
+    <h1>Показатели радиации</h1>
+    <table class="table table-striped" matSort (matSortChange)="sortData($event)">
+      <thead>
+        <tr class="head">
+          <td mat-sort-header="Id">Id</td>
+          <td mat-sort-header="Dose">Доза</td>
+          <td mat-sort-header="Level">Уровень</td>
+          <td mat-sort-header="User">Сотрудник</td>
+          <td mat-sort-header="City">Населенный пункт</td>
+          <td mat-sort-header="Date">Дата</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of sortedData">
+          <td>{{item.Id}}</td>
+          <td>{{item.Dose}} мкЗв/ч</td>
+          <td>{{item.Level}}</td>
+          <td>{{item.User.Surname}} {{item.User.Name}}</td>
+          <td>{{item.City.City}}</td>
+          <td>{{item.Date | dateFormatPipe}}</td>
+          <td style="width:150px; text-align:center">
+            <input type="button" value="Изменить" (click)="edit(item)" class="btn btn-secondary button" />
+            <input type="button" value="Удалить" (click)="delRadiation(item.Id)" class="btn btn-danger button" />
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+    <mat-paginator [length]="length"
+                   [pageSize]="pageSize"
+                   [pageIndex]="pageIndex"
+                   [pageSizeOptions]="[10, 15]"
+                   (page)="pageEvent = changePageEvent($event)">
+    </mat-paginator>
+
+  </mat-card>
+</app-main-nav>
+
+

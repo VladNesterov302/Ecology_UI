@@ -35,6 +35,8 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { AdminCityComponent } from './admin-city/admin-city.component';
 import { AdminWaterObjectComponent } from './admin-water-object/admin-water-object.component';
+import { UserRadiationComponent } from './user-radiation/user-radiation.component';
+import { RadiationService } from './user-radiation/Services/radiation.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { AdminWaterObjectComponent } from './admin-water-object/admin-water-obje
     MainPageComponent,
     UserRegisterComponent,
     AdminCityComponent,
-    AdminWaterObjectComponent
+    AdminWaterObjectComponent,
+    UserRadiationComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +83,7 @@ import { AdminWaterObjectComponent } from './admin-water-object/admin-water-obje
     UserService,
     AdminService,
     GlobalService,
+    RadiationService,
     ],
   bootstrap: [AppComponent]
 })
