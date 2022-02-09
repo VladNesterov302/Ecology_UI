@@ -32,6 +32,9 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { DateTimeFormatPipe } from './pipes/date-time-format.pipe';
 import { DateFormatPipe } from './pipes/date-format.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
+import { UserRegisterComponent } from './user-register/user-register.component';
+import { AdminCityComponent } from './admin-city/admin-city.component';
+import { AdminWaterObjectComponent } from './admin-water-object/admin-water-object.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import { FilterPipe } from './pipes/filter.pipe';
     DateFormatPipe,
     FilterPipe,
     AdminNavComponent,
-    MainPageComponent
+    MainPageComponent,
+    UserRegisterComponent,
+    AdminCityComponent,
+    AdminWaterObjectComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,74 @@
+<app-admin-nav>
+  <mat-card class="form-card center" *ngIf="editCity">
+    <mat-card-header>
+      <mat-card-title>Редактирование населенного пункта</mat-card-title>
+    </mat-card-header>
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)"
+                 size="medium"
+                 color="#ffffff"
+                 type="line-spin-fade">
+    </ngx-spinner>
+
+    <form class="form ng-pristine ng-untouched ng-valid" #newForm="ngForm" novalidate="">
+
+      <div class="form-group">
+
+        <mat-form-field class="input-width">
+          <input matInput placeholder="Название" [(ngModel)]="editCityField.City" name="City" required>
+        </mat-form-field>
+      </div>
+
+      <div style="display:inline-block">
+        <button mat-raised-button color="primary" [disabled]="!newForm.valid" (click)="EditCity()">Изменить</button>
+      </div>
+
+    </form>
+  </mat-card>
+  <mat-card class="form-card center">
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)"
+                 size="medium"
+                 color="#ffffff"
+                 type="line-spin-fade">
+    </ngx-spinner>
+    <form #Form="ngForm" class="form-card ">
+      <mat-form-field class="input-width">
+        <input matInput [(ngModel)]="newCity.City" name="WaterObject" placeholder="Название населенного пункта" required>
+      </mat-form-field>
+
+      <div style="display:inline-block">
+        <button mat-raised-button color="primary" [disabled]="!Form.valid" (click)="AddCity()">
+          Добавить
+        </button>
+      </div>
+
+    </form>
+    <h1>Населенные пункты</h1>
+    <table class="table table-striped" matSort (matSortChange)="sortData($event)">
+      <thead>
+        <tr class="head">
+          <td mat-sort-header="Id">Id</td>
+          <td mat-sort-header="City">Населенный пункт</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of sortedData">
+          <td>{{item.Id}}</td>
+          <td>{{item.City}}</td>
+          <td style="width:150px; text-align:center">
+            <input type="button" value="Изменить" (click)="edit(item)" class="btn btn-secondary button" />
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+    <mat-paginator [length]="length"
+                   [pageSize]="pageSize"
+                   [pageIndex]="pageIndex"
+                   [pageSizeOptions]="[10, 15]"
+                   (page)="pageEvent = changePageEvent($event)">
+    </mat-paginator>
+
+  </mat-card>
+</app-admin-nav>
+

@@ -27,6 +27,7 @@ export class SignInComponent implements OnInit {
   OnSubmit(userName: string, password: string) {
     this.spinner.show();
     this.userService.userAuthentication(userName, password).subscribe((data: any) => {
+      console.log(data)
       if (data == 0) {
         alert('Неверный логин или пароль');
         this.spinner.hide();

@@ -16,7 +16,7 @@ export class AdminUsersComponent implements OnInit {
   public sortedData: UserReg[] = [];
   public users: UserReg[] = [];
 
-  newUser: UserReg = new UserReg('', '', '', '', '', '', '', '','');
+  newUser: UserReg = new UserReg('', '', '', '', '', '', '', '','','');
   successMessage = 'Success';
   successDelMessage = 'Success';
   errorMessage = 'Error';
@@ -35,23 +35,6 @@ export class AdminUsersComponent implements OnInit {
     this.getUsers();
   }
 
-  OnSubmit() {
-    this.spinner.show();
-    this.adminService.HrRegistration(this.newUser).subscribe(next => {
-      console.log(next)
-      this.spinner.hide();
-      if (next.error === false) {
-        this.showSnackBar(this.successMessage, this.successStyle);
-        this.setObjectsToDefault();
-      } else {
-          this.showSnackBar(this.errorMessage, this.errorStyle);
-      }
-    }, error => {
-      console.log(error);
-      this.spinner.hide();
-    });
-  }
-
   getUsers() {
     this.adminService.getUsers().toPromise().then(
       data => {
@@ -60,20 +43,25 @@ export class AdminUsersComponent implements OnInit {
       });
   }
 
-  deleteUser(Id) {
-    this.adminService.DeleteUser(Id).subscribe(next => {
-      console.log(next)
-      this.spinner.hide();
-      if (next.error === false) {
-        this.showSnackBar(this.successDelMessage, this.successStyle);
+  block(id) {
+    this.adminService.Block(id).subscribe(
+      next => {
         this.getUsers();
-      } else {
-          this.showSnackBar(this.errorMessage, this.errorStyle);
+      },
+      err => {
+        console.log(err);
       }
-    }, error => {
-      console.log(error);
-      this.spinner.hide();
-    });
+    );
+  }
+  unblock(id) {
+    this.adminService.Unblock(id).subscribe(
+      next => {
+        this.getUsers();
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   showSnackBar(message: string, typeClass: string) {
@@ -86,7 +74,7 @@ export class AdminUsersComponent implements OnInit {
   }
 
   setObjectsToDefault() {
-    this.newUser = new UserReg('', '', '', '', '', '', '', '','');
+    this.newUser = new UserReg('', '', '', '', '', '', '', '','','');
   }
 
   sortData(sort: Sort) {
@@ -107,8 +95,10 @@ export class AdminUsersComponent implements OnInit {
           return compare(a.UserName, b.UserName, isAsc);
         case 'Email':
           return compare(a.Email, b.Email, isAsc);
-        case 'RoleName':
-          return compare(a.RoleName, b.RoleName, isAsc);
+        case 'Status':
+          return compare(a.Status, b.RoleName, isAsc);
+        case 'Created':
+          return compare(a.Created, b.RoleName, isAsc);
         default:
           return 0;
       }

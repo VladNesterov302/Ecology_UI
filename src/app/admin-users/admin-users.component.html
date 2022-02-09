@@ -1,8 +1,8 @@
 <app-admin-nav>
   <mat-card class="form-card center">
     <h1>Сотрудники</h1>
-    <div class="form-outline"> 
-      <input class="form-control" type="search" [(ngModel)]="queryString" id="search" placeholder="Search to login">
+    <div class="form-outline">
+      <input class="form-control" type="search" [(ngModel)]="queryString" id="search" placeholder="Поиск по логину">
 
     </div>
     <table class="table table-striped" matSort (matSortChange)="sortData($event)">
@@ -12,6 +12,8 @@
           <td mat-sort-header="Surname">Фамилия</td>
           <td mat-sort-header="UserName">Логин</td>
           <td mat-sort-header="Email">Почта</td>
+          <td mat-sort-header="Created">Дата регистрации</td>
+          <td mat-sort-header="Status">Статус</td>
           <td></td>
         </tr>
       </thead>
@@ -21,9 +23,12 @@
           <td>{{user.Surname}}</td>
           <td>{{user.UserName}}</td>
           <td>{{user.Email}}</td>
+          <td>{{user.Created | dateFormatPipe}}</td>
+          <td>{{user.Status}}</td>
 
-          <td style="width:125px">
-            <input type="button" value="Delete" (click)="deleteUser(user.Id)" class="btn btn-danger" />
+          <td style="width:150px">
+            <input *ngIf="user.Status == 'Активен'" type="button" value="Заблокировать" (click)="block(user.Id)" class="btn btn-danger" />
+            <input *ngIf="user.Status == 'Заблокирован'" type="button" value="Разблокировать" (click)="unblock(user.Id)" class="btn btn-success" />
           </td>
         </tr>
       </tbody>

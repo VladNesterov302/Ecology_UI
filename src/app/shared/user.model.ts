@@ -5,6 +5,8 @@ export class User {
 export class UserReg {
   constructor(
     public Id: string,
+    public Name: string,
+    public Surname: string,
     public Created: string,
     public Email: string,
 
@@ -12,8 +14,8 @@ export class UserReg {
     public UserName: string,
     public RoleId: string,
     public RoleName: string,
-    public Name: string,
-    public Surname: string,
+
+    public Status: string,
 
   ) { }
 }

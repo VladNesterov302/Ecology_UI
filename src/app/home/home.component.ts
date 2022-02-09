@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   public userName: string;
   public role: string;
   public email: string;
+  public fio: string;
 
 
   constructor(
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit {
     this.userName = localStorage.getItem('userName');
     this.role = localStorage.getItem('role');
     this.email = localStorage.getItem('email');
+    this.fio = localStorage.getItem('userNameSurname');
   }
 
   Logout() {

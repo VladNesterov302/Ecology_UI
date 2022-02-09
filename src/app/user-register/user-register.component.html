@@ -1,0 +1,43 @@
+<app-admin-nav>
+  <mat-card class="form-card center">
+    <mat-card-header>
+      <mat-card-title>Регистрация нового сотрудника</mat-card-title>
+    </mat-card-header>
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)"
+                 size="medium"
+                 color="#ffffff"
+                 type="line-spin-fade">
+    </ngx-spinner>
+
+    <form class="form ng-pristine ng-untouched ng-valid" #newForm="ngForm" novalidate="">
+
+      <div class="form-group">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Имя" [(ngModel)]="newUser.Name" name="Name" required>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Фамилия" [(ngModel)]="newUser.SurName" name="SurName" required>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Логин" [(ngModel)]="newUser.UserName" name="UserName" required>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input matInput type="password" placeholder="Пароль" [(ngModel)]="newUser.Password" name="Password" required>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input matInput type="email" placeholder="Почта" [(ngModel)]="newUser.Email" name="Email" required>
+        </mat-form-field>
+      </div>
+
+      <div style="display:inline-block">
+        <button mat-raised-button color="primary" [disabled]="!newForm.valid" (click)="OnSubmit(newUser)">Зарегистрировать</button>
+      </div>
+
+    </form>
+  </mat-card>
+</app-admin-nav>
+

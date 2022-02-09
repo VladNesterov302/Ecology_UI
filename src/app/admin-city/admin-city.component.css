@@ -4,28 +4,33 @@
   width: 100%;
 }
 
-.full-width {
-  width: 100%;
+.input-width {
+  width: 50%;
+  margin-right: 40px;
 }
 
 .form-card {
   max-width: 1500px;
-}
 
+}
+form{
+  text-align:center
+}
 .center {
-  width: 90%;
+  width: 70%;
   margin: 50px auto;
 }
 
 .submit-button {
   margin-top: 20px;
 }
-.btn{
-    width:150px !important;
+
+.table {
+  width: 70%;
+  margin: auto;
 }
-#search {
-  width: 30%; 
-  font-size: 16px; 
-  padding: 12px 20px 12px 12px; 
-  margin-bottom: 12px; 
+
+h1 {
+  text-align: center;
 }
+
