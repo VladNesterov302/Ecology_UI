@@ -10,12 +10,26 @@ import { UserRegisterComponent } from './user-register/user-register.component';
 import { AdminCityComponent } from './admin-city/admin-city.component';
 import { AdminWaterObjectComponent } from './admin-water-object/admin-water-object.component';
 import { UserRadiationComponent } from './user-radiation/user-radiation.component';
+import { UserAzotComponent } from './user-azot/user-azot.component';
+import { UserOzonComponent } from './user-ozon/user-ozon.component';
+import { UserPmComponent } from './user-pm/user-pm.component';
+import { UserSeraComponent } from './user-sera/user-sera.component';
+import { UserPhComponent } from './user-ph/user-ph.component';
+import { UserBioOxygenComponent } from './user-bio-oxygen/user-bio-oxygen.component';
+import { UserChemicalOxygenComponent } from './user-chemical-oxygen/user-chemical-oxygen.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main-page', pathMatch : 'full'},
   { path: 'main-page', component: MainPageComponent },
   { path: 'home', component: HomeComponent },
   { path: 'user-radiation', component: UserRadiationComponent },
+  { path: 'user-azot', component: UserAzotComponent },
+  { path: 'user-ozon', component: UserOzonComponent },
+  { path: 'user-pm', component: UserPmComponent },
+  { path: 'user-sera', component: UserSeraComponent },
+  { path: 'user-ph', component: UserPhComponent },
+  { path: 'user-bio-oxygen', component: UserBioOxygenComponent },
+  { path: 'user-chemical-oxygen', component: UserChemicalOxygenComponent },
   { path: 'admin-home', component: AdminHomeComponent },
   { path: 'admin-users', component: AdminUsersComponent },
   { path: 'admin-user-register', component: UserRegisterComponent },

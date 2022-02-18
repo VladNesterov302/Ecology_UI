@@ -4,27 +4,27 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { City } from '../admin-city/Models/city.model';
 import { AdminService } from '../shared/admin.service';
-import { Radiation } from './Models/radiation.model';
-import { RadiationService } from './Services/radiation.service';
+import { Azot } from './Models/azot.model';
+import { AzotService } from './Services/azot.service';
 
 @Component({
-  selector: 'app-user-radiation',
-  templateUrl: './user-radiation.component.html',
-  styleUrls: ['./user-radiation.component.css']
+  selector: 'app-user-azot',
+  templateUrl: './user-azot.component.html',
+  styleUrls: ['./user-azot.component.css']
 })
-export class UserRadiationComponent implements OnInit {
+export class UserAzotComponent implements OnInit {
 
-  public sortedData: Radiation[] = [];
-  public radiation: Radiation[] = [];
+  public sortedData: Azot[] = [];
+  public azot: Azot[] = [];
   public cities: City[] = [];
-  public editRadiation = false;
+  public editAzot = false;
   pageSize = 10;
   pageIndex = 0;
   length = 0;
   step = 0;
 
-  newRadiation: Radiation = new Radiation(null, null, null, null, '', null, '', '');
-  editRadiationField: Radiation = new Radiation(null, null, null, null, '', null, '', '');
+  newAzot: Azot = new Azot(null, null, null, null, '', null, '', '');
+  editAzotField: Azot = new Azot(null, null, null, null, '', null, '', '');
   successDelMessage = 'Данные удалены успешно.';
   successMessage = 'Данные добавлены успешно.';
   errorMessage = 'Проверьте данные. Ошибка добавления.';
@@ -33,7 +33,7 @@ export class UserRadiationComponent implements OnInit {
 
   constructor(
     private adminService: AdminService,
-    private radiationService: RadiationService,
+    private azotService: AzotService,
     private router: Router,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
@@ -41,32 +41,24 @@ export class UserRadiationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getRadiations();
+    this.getAzots();
     this.getCities();
   }
 
-  AddRadiation() {
+  AddAzot() {
     this.spinner.show();
-    this.newRadiation.IdUser = localStorage.getItem('userId');
-    if (this.newRadiation.Dose < 0.1) {
-      this.newRadiation.Level = 1
+    this.newAzot.IdUser = localStorage.getItem('userId');
+    if (this.newAzot.Dose <= 25) {
+      this.newAzot.Level = "Норма"
     }
-    if (this.newRadiation.Dose >= 0.1 && this.newRadiation.Dose < 0.2) {
-      this.newRadiation.Level = 2
+    if (this.newAzot.Dose > 25) {
+      this.newAzot.Level = "Превышение"
     }
-    if (this.newRadiation.Dose >= 0.2 && this.newRadiation.Dose < 0.3) {
-      this.newRadiation.Level = 3
-    }
-    if (this.newRadiation.Dose >= 0.3 && this.newRadiation.Dose < 0.5) {
-      this.newRadiation.Level = 4
-    }
-    if (this.newRadiation.Dose >= 0.5) {
-      this.newRadiation.Level = 5
-    }
-    this.radiationService.AddRadiation(this.newRadiation).subscribe(next => {
+    
+    this.azotService.AddAzot(this.newAzot).subscribe(next => {
       this.spinner.hide();
       if (next.error === false) {
-        this.getRadiations();
+        this.getAzots();
         this.showSnackBar(this.successMessage, this.successStyle);
         this.setObjectsToDefault();
       } else {
@@ -78,10 +70,10 @@ export class UserRadiationComponent implements OnInit {
     });
   }
 
-  getRadiations() {
-    this.radiationService.getRadiations().toPromise().then(
+  getAzots() {
+    this.azotService.getAzots().toPromise().then(
       data => {
-        this.radiation = data.slice();
+        this.azot = data.slice();
         this.sortedData = data.slice();
         this.setVariablesToDefault();
         this.step = this.sortedData[0].Id;
@@ -97,46 +89,37 @@ export class UserRadiationComponent implements OnInit {
       });
   }
 
-  edit(radiation: Radiation) {
-    this.editRadiation = true;
-    this.editRadiationField.IdCity = radiation.IdCity;
-    this.editRadiationField.Id = radiation.Id;
-    this.editRadiationField.Dose = radiation.Dose;
-    this.editRadiationField.Date = radiation.Date;
-    this.editRadiationField.IdUser = localStorage.getItem('userId');
+  edit(azot: Azot) {
+    this.editAzot = true;
+    this.editAzotField.IdCity = azot.IdCity;
+    this.editAzotField.Id = azot.Id;
+    this.editAzotField.Dose = azot.Dose;
+    this.editAzotField.Date = azot.Date;
+    this.editAzotField.IdUser = localStorage.getItem('userId');
   }
 
-  EditRadiation() {
-    if (this.editRadiationField.Dose < 0.1) {
-      this.editRadiationField.Level = 1
+  EditAzot() {
+    if (this.editAzotField.Dose <= 25) {
+      this.editAzotField.Level = "Норма"
     }
-    if (this.editRadiationField.Dose >= 0.1 && this.editRadiationField.Dose < 0.2) {
-      this.editRadiationField.Level = 2
+    if (this.editAzotField.Dose > 25) {
+      this.editAzotField.Level = "Превышение"
     }
-    if (this.editRadiationField.Dose >= 0.2 && this.editRadiationField.Dose < 0.3) {
-      this.editRadiationField.Level = 3
-    }
-    if (this.editRadiationField.Dose >= 0.3 && this.editRadiationField.Dose < 0.5) {
-      this.editRadiationField.Level = 4
-    }
-    if (this.editRadiationField.Dose >= 0.5) {
-      this.editRadiationField.Level = 5
-    }
-    this.radiationService.EditRadiation(this.editRadiationField).subscribe(next => {
-      this.editRadiation = false;
-      this.getRadiations();
+    this.azotService.EditAzot(this.editAzotField).subscribe(next => {
+      this.editAzot = false;
+      this.getAzots();
     }, error => {
       console.log(error);
       this.spinner.hide();
     });
   }
 
-  delRadiation(id) {
+  delAzot(id) {
     this.spinner.show();
-    this.radiationService.DeleteRadiation(id).subscribe(next => {
+    this.azotService.DeleteAzot(id).subscribe(next => {
       if (next.error === false) {
         this.showSnackBar(this.successDelMessage, this.successStyle);
-        this.getRadiations();
+        this.getAzots();
         this.spinner.hide();
       } else {
         this.showSnackBar(this.errorMessage, this.errorStyle);
@@ -157,7 +140,7 @@ export class UserRadiationComponent implements OnInit {
   }
 
   setObjectsToDefault() {
-    this.newRadiation = new Radiation(null, null, null, null, '', null, '', '');
+    this.newAzot = new Azot(null, null, null, null, '', null, '', '');
   }
 
 
@@ -166,7 +149,7 @@ export class UserRadiationComponent implements OnInit {
       this.pageIndex = event.pageIndex;
       this.pageSize = event.pageSize;
     }
-    this.sortedData = (this.radiation.slice(this.pageSize * this.pageIndex, this.pageSize * (this.pageIndex + 1)));
+    this.sortedData = (this.azot.slice(this.pageSize * this.pageIndex, this.pageSize * (this.pageIndex + 1)));
     return event;
   }
 
@@ -181,20 +164,20 @@ export class UserRadiationComponent implements OnInit {
   }
 
   nextStep(currentStep: number) {
-    const ind = this.radiation.findIndex(x => x.Id === currentStep);
-    if (this.radiation[ind + 1] !== undefined) {
-      this.step = this.radiation[ind + 1].Id;
+    const ind = this.azot.findIndex(x => x.Id === currentStep);
+    if (this.azot[ind + 1] !== undefined) {
+      this.step = this.azot[ind + 1].Id;
     }
   }
 
   prevStep(currentStep: number) {
-    const ind = this.radiation.findIndex(x => x.Id === currentStep);
-    if (this.radiation[ind - 1] !== undefined) {
-      this.step = this.radiation[ind - 1].Id;
+    const ind = this.azot.findIndex(x => x.Id === currentStep);
+    if (this.azot[ind - 1] !== undefined) {
+      this.step = this.azot[ind - 1].Id;
     }
   }
   sortData(sort: Sort) {
-    const data = this.radiation.slice();
+    const data = this.azot;
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
       return;

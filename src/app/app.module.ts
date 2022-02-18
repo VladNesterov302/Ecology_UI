@@ -37,6 +37,22 @@ import { AdminCityComponent } from './admin-city/admin-city.component';
 import { AdminWaterObjectComponent } from './admin-water-object/admin-water-object.component';
 import { UserRadiationComponent } from './user-radiation/user-radiation.component';
 import { RadiationService } from './user-radiation/Services/radiation.service';
+import { UserAzotComponent } from './user-azot/user-azot.component';
+import { AzotService } from './user-azot/Services/azot.service';
+import { FilterCityPipe } from './pipes/filterCity.pipe';
+import { UserOzonComponent } from './user-ozon/user-ozon.component';
+import { OzonService } from './user-ozon/Services/ozon.service';
+import { UserPmComponent } from './user-pm/user-pm.component';
+import { PmService } from './user-pm/Services/pm.service';
+import { UserSeraComponent } from './user-sera/user-sera.component';
+import { SeraService } from './user-sera/Services/sera.service';
+import { UserPhComponent } from './user-ph/user-ph.component';
+import { PhService } from './user-ph/Services/ph.service';
+import { FilterWaterObjectPipe } from './pipes/filterWaterObject.pipe';
+import { UserBioOxygenComponent } from './user-bio-oxygen/user-bio-oxygen.component';
+import { BioOxygenService } from './user-bio-oxygen/Services/biooxygen.service';
+import { UserChemicalOxygenComponent } from './user-chemical-oxygen/user-chemical-oxygen.component';
+import { ChemicalOxygenService } from './user-chemical-oxygen/Services/chemicaloxygen.service';
 
 @NgModule({
   declarations: [
@@ -50,12 +66,21 @@ import { RadiationService } from './user-radiation/Services/radiation.service';
     DateTimeFormatPipe,
     DateFormatPipe,
     FilterPipe,
+    FilterCityPipe,
+    FilterWaterObjectPipe,
     AdminNavComponent,
     MainPageComponent,
     UserRegisterComponent,
     AdminCityComponent,
     AdminWaterObjectComponent,
-    UserRadiationComponent
+    UserRadiationComponent,
+    UserAzotComponent,
+    UserOzonComponent,
+    UserPmComponent,
+    UserSeraComponent,
+    UserPhComponent,
+    UserBioOxygenComponent,
+    UserChemicalOxygenComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +109,13 @@ import { RadiationService } from './user-radiation/Services/radiation.service';
     AdminService,
     GlobalService,
     RadiationService,
+    AzotService,
+    OzonService,
+    PmService,
+    SeraService,
+    PhService,
+    BioOxygenService,
+    ChemicalOxygenService,
     ],
   bootstrap: [AppComponent]
 })

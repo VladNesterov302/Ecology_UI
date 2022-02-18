@@ -4,27 +4,27 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { City } from '../admin-city/Models/city.model';
 import { AdminService } from '../shared/admin.service';
-import { Radiation } from './Models/radiation.model';
-import { RadiationService } from './Services/radiation.service';
+import { Sera } from './Models/sera.model';
+import { SeraService } from './Services/sera.service';
 
 @Component({
-  selector: 'app-user-radiation',
-  templateUrl: './user-radiation.component.html',
-  styleUrls: ['./user-radiation.component.css']
+  selector: 'app-user-sera',
+  templateUrl: './user-sera.component.html',
+  styleUrls: ['./user-sera.component.css']
 })
-export class UserRadiationComponent implements OnInit {
+export class UserSeraComponent implements OnInit {
 
-  public sortedData: Radiation[] = [];
-  public radiation: Radiation[] = [];
+  public sortedData: Sera[] = [];
+  public sera: Sera[] = [];
   public cities: City[] = [];
-  public editRadiation = false;
+  public editSera = false;
   pageSize = 10;
   pageIndex = 0;
   length = 0;
   step = 0;
 
-  newRadiation: Radiation = new Radiation(null, null, null, null, '', null, '', '');
-  editRadiationField: Radiation = new Radiation(null, null, null, null, '', null, '', '');
+  newSera: Sera = new Sera(null, null, null, null, '', null, '', '');
+  editSeraField: Sera = new Sera(null, null, null, null, '', null, '', '');
   successDelMessage = 'Данные удалены успешно.';
   successMessage = 'Данные добавлены успешно.';
   errorMessage = 'Проверьте данные. Ошибка добавления.';
@@ -33,7 +33,7 @@ export class UserRadiationComponent implements OnInit {
 
   constructor(
     private adminService: AdminService,
-    private radiationService: RadiationService,
+    private seraService: SeraService,
     private router: Router,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
@@ -41,32 +41,24 @@ export class UserRadiationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getRadiations();
+    this.getSeras();
     this.getCities();
   }
 
-  AddRadiation() {
+  AddSera() {
     this.spinner.show();
-    this.newRadiation.IdUser = localStorage.getItem('userId');
-    if (this.newRadiation.Dose < 0.1) {
-      this.newRadiation.Level = 1
+    this.newSera.IdUser = localStorage.getItem('userId');
+    if (this.newSera.Dose <= 40) {
+      this.newSera.Level = "Норма"
     }
-    if (this.newRadiation.Dose >= 0.1 && this.newRadiation.Dose < 0.2) {
-      this.newRadiation.Level = 2
+    if (this.newSera.Dose > 40) {
+      this.newSera.Level = "Превышение"
     }
-    if (this.newRadiation.Dose >= 0.2 && this.newRadiation.Dose < 0.3) {
-      this.newRadiation.Level = 3
-    }
-    if (this.newRadiation.Dose >= 0.3 && this.newRadiation.Dose < 0.5) {
-      this.newRadiation.Level = 4
-    }
-    if (this.newRadiation.Dose >= 0.5) {
-      this.newRadiation.Level = 5
-    }
-    this.radiationService.AddRadiation(this.newRadiation).subscribe(next => {
+
+    this.seraService.AddSera(this.newSera).subscribe(next => {
       this.spinner.hide();
       if (next.error === false) {
-        this.getRadiations();
+        this.getSeras();
         this.showSnackBar(this.successMessage, this.successStyle);
         this.setObjectsToDefault();
       } else {
@@ -78,10 +70,10 @@ export class UserRadiationComponent implements OnInit {
     });
   }
 
-  getRadiations() {
-    this.radiationService.getRadiations().toPromise().then(
+  getSeras() {
+    this.seraService.getSeras().toPromise().then(
       data => {
-        this.radiation = data.slice();
+        this.sera = data.slice();
         this.sortedData = data.slice();
         this.setVariablesToDefault();
         this.step = this.sortedData[0].Id;
@@ -97,46 +89,37 @@ export class UserRadiationComponent implements OnInit {
       });
   }
 
-  edit(radiation: Radiation) {
-    this.editRadiation = true;
-    this.editRadiationField.IdCity = radiation.IdCity;
-    this.editRadiationField.Id = radiation.Id;
-    this.editRadiationField.Dose = radiation.Dose;
-    this.editRadiationField.Date = radiation.Date;
-    this.editRadiationField.IdUser = localStorage.getItem('userId');
+  edit(sera: Sera) {
+    this.editSera = true;
+    this.editSeraField.IdCity = sera.IdCity;
+    this.editSeraField.Id = sera.Id;
+    this.editSeraField.Dose = sera.Dose;
+    this.editSeraField.Date = sera.Date;
+    this.editSeraField.IdUser = localStorage.getItem('userId');
   }
 
-  EditRadiation() {
-    if (this.editRadiationField.Dose < 0.1) {
-      this.editRadiationField.Level = 1
+  EditSera() {
+    if (this.editSeraField.Dose <= 40) {
+      this.editSeraField.Level = "Норма"
     }
-    if (this.editRadiationField.Dose >= 0.1 && this.editRadiationField.Dose < 0.2) {
-      this.editRadiationField.Level = 2
+    if (this.editSeraField.Dose > 40) {
+      this.editSeraField.Level = "Превышение"
     }
-    if (this.editRadiationField.Dose >= 0.2 && this.editRadiationField.Dose < 0.3) {
-      this.editRadiationField.Level = 3
-    }
-    if (this.editRadiationField.Dose >= 0.3 && this.editRadiationField.Dose < 0.5) {
-      this.editRadiationField.Level = 4
-    }
-    if (this.editRadiationField.Dose >= 0.5) {
-      this.editRadiationField.Level = 5
-    }
-    this.radiationService.EditRadiation(this.editRadiationField).subscribe(next => {
-      this.editRadiation = false;
-      this.getRadiations();
+    this.seraService.EditSera(this.editSeraField).subscribe(next => {
+      this.editSera = false;
+      this.getSeras();
     }, error => {
       console.log(error);
       this.spinner.hide();
     });
   }
 
-  delRadiation(id) {
+  delSera(id) {
     this.spinner.show();
-    this.radiationService.DeleteRadiation(id).subscribe(next => {
+    this.seraService.DeleteSera(id).subscribe(next => {
       if (next.error === false) {
         this.showSnackBar(this.successDelMessage, this.successStyle);
-        this.getRadiations();
+        this.getSeras();
         this.spinner.hide();
       } else {
         this.showSnackBar(this.errorMessage, this.errorStyle);
@@ -157,7 +140,7 @@ export class UserRadiationComponent implements OnInit {
   }
 
   setObjectsToDefault() {
-    this.newRadiation = new Radiation(null, null, null, null, '', null, '', '');
+    this.newSera = new Sera(null, null, null, null, '', null, '', '');
   }
 
 
@@ -166,7 +149,7 @@ export class UserRadiationComponent implements OnInit {
       this.pageIndex = event.pageIndex;
       this.pageSize = event.pageSize;
     }
-    this.sortedData = (this.radiation.slice(this.pageSize * this.pageIndex, this.pageSize * (this.pageIndex + 1)));
+    this.sortedData = (this.sera.slice(this.pageSize * this.pageIndex, this.pageSize * (this.pageIndex + 1)));
     return event;
   }
 
@@ -181,20 +164,20 @@ export class UserRadiationComponent implements OnInit {
   }
 
   nextStep(currentStep: number) {
-    const ind = this.radiation.findIndex(x => x.Id === currentStep);
-    if (this.radiation[ind + 1] !== undefined) {
-      this.step = this.radiation[ind + 1].Id;
+    const ind = this.sera.findIndex(x => x.Id === currentStep);
+    if (this.sera[ind + 1] !== undefined) {
+      this.step = this.sera[ind + 1].Id;
     }
   }
 
   prevStep(currentStep: number) {
-    const ind = this.radiation.findIndex(x => x.Id === currentStep);
-    if (this.radiation[ind - 1] !== undefined) {
-      this.step = this.radiation[ind - 1].Id;
+    const ind = this.sera.findIndex(x => x.Id === currentStep);
+    if (this.sera[ind - 1] !== undefined) {
+      this.step = this.sera[ind - 1].Id;
     }
   }
   sortData(sort: Sort) {
-    const data = this.radiation.slice();
+    const data = this.sera;
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
       return;

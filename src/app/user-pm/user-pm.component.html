@@ -1,7 +1,7 @@
 <app-main-nav>
-  <mat-card class="form-card center" *ngIf="editRadiation">
+  <mat-card class="form-card center" *ngIf="editPm">
     <mat-card-header>
-      <mat-card-title>Редактирование показателей радиации</mat-card-title>
+      <mat-card-title>Редактирование показателей взвешенных частиц</mat-card-title>
     </mat-card-header>
     <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)"
                  size="medium"
@@ -14,14 +14,15 @@
       <div class="form-group">
 
         <mat-form-field class="input-width">
-          <input matInput placeholder="Доза" [(ngModel)]="editRadiationField.Dose" name="Dose" required>
+          <input matInput placeholder="Доза PM2.5" [(ngModel)]="editPmField.Dose" name="Dose" required>
         </mat-form-field>
 
-
-
+        <mat-form-field class="input-width">
+          <input matInput placeholder="Доза PM10" [(ngModel)]="editPmField.Dose10" name="Dose10" required>
+        </mat-form-field>
 
         <mat-form-field class="input-width">
-          <mat-select placeholder="Населенный пункт" [(ngModel)]="editRadiationField.IdCity" name="IdCity">
+          <mat-select placeholder="Населенный пункт" [(ngModel)]="editPmField.IdCity" name="IdCity">
             <mat-option *ngFor="let city of cities" [value]="city.Id">
               {{city.City}}
             </mat-option>
@@ -29,7 +30,7 @@
         </mat-form-field>
       </div>
       <div style="display:inline-block">
-        <button mat-raised-button color="primary" [disabled]="!newForm.valid" (click)="EditRadiation()">Изменить</button>
+        <button mat-raised-button color="primary" [disabled]="!newForm.valid" (click)="EditPm()">Изменить</button>
       </div>
 
     </form>
@@ -42,11 +43,15 @@
     </ngx-spinner>
     <form #Form="ngForm" class="form-card ">
       <mat-form-field class="input-width">
-        <input matInput [(ngModel)]="newRadiation.Dose" name="Dose" placeholder="Доза" required>
+        <input matInput [(ngModel)]="newPm.Dose" name="Dose" placeholder="Доза PM2.5" required>
       </mat-form-field>
 
       <mat-form-field class="input-width">
-        <mat-select placeholder="Населенный пункт" [(ngModel)]="newRadiation.IdCity" name="IdCity" required>
+        <input matInput [(ngModel)]="newPm.Dose10" name="Dose10" placeholder="Доза PM10" required>
+      </mat-form-field>
+
+      <mat-form-field class="input-width">
+        <mat-select placeholder="Населенный пункт" [(ngModel)]="newPm.IdCity" name="IdCity" required>
           <mat-option *ngFor="let city of cities" [value]="city.Id">
             {{city.City}}
           </mat-option>
@@ -55,13 +60,13 @@
       </mat-form-field>
 
       <div style="display:inline-block">
-        <button mat-raised-button color="primary" [disabled]="!Form.valid" (click)="AddRadiation()">
+        <button mat-raised-button color="primary" [disabled]="!Form.valid" (click)="AddPm()">
           Добавить
         </button>
       </div>
 
     </form>
-    <h1>Показатели радиации</h1>
+    <h1>Показатели взвешенных частиц</h1>
     <div class="form-outline search-width">
       <input class="form-control" type="search" [(ngModel)]="queryString" id="search" placeholder="Поиск по населенному пункту">
     </div>
@@ -69,8 +74,10 @@
       <thead>
         <tr class="head">
           <td mat-sort-header="Id">Id</td>
-          <td mat-sort-header="Dose">Доза</td>
-          <td mat-sort-header="Level">Уровень</td>
+          <td mat-sort-header="Dose">Доза PM2.5</td>
+          <td mat-sort-header="Level">Уровень PM2.5</td>
+          <td mat-sort-header="Dose10">Доза PM10</td>
+          <td mat-sort-header="Level10">Уровень PM10</td>
           <td>Сотрудник</td>
           <td>Населенный пункт</td>
           <td mat-sort-header="Date">Дата</td>
@@ -80,14 +87,16 @@
       <tbody>
         <tr *ngFor="let item of sortedData | FilterCityPipe: queryString">
           <td>{{item.Id}}</td>
-          <td>{{item.Dose}} мкЗв/ч</td>
+          <td>{{item.Dose}} мкг/м3 </td>
           <td>{{item.Level}}</td>
+          <td>{{item.Dose10}} мкг/м3 </td>
+          <td>{{item.Level10}}</td>
           <td>{{item.User.Surname}} {{item.User.Name}}</td>
           <td>{{item.City.City}}</td>
           <td>{{item.Date | dateFormatPipe}}</td>
           <td style="width:150px; text-align:center">
             <input type="button" value="Изменить" (click)="edit(item)" class="btn btn-secondary button" />
-            <input type="button" value="Удалить" (click)="delRadiation(item.Id)" class="btn btn-danger button" />
+            <input type="button" value="Удалить" (click)="delPm(item.Id)" class="btn btn-danger button" />
           </td>
         </tr>
       </tbody>
@@ -102,5 +111,6 @@
 
   </mat-card>
 </app-main-nav>
+
 
 

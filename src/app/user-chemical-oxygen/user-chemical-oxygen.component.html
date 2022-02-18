@@ -1,7 +1,7 @@
 <app-main-nav>
-  <mat-card class="form-card center" *ngIf="editRadiation">
+  <mat-card class="form-card center" *ngIf="editChemicalOxygen">
     <mat-card-header>
-      <mat-card-title>Редактирование показателей радиации</mat-card-title>
+      <mat-card-title>Редактирование показателей химического потребления кислорода</mat-card-title>
     </mat-card-header>
     <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)"
                  size="medium"
@@ -14,22 +14,19 @@
       <div class="form-group">
 
         <mat-form-field class="input-width">
-          <input matInput placeholder="Доза" [(ngModel)]="editRadiationField.Dose" name="Dose" required>
+          <input matInput placeholder="Доза" [(ngModel)]="editChemicalOxygenField.Dose" name="Dose" required>
         </mat-form-field>
 
-
-
-
         <mat-form-field class="input-width">
-          <mat-select placeholder="Населенный пункт" [(ngModel)]="editRadiationField.IdCity" name="IdCity">
-            <mat-option *ngFor="let city of cities" [value]="city.Id">
-              {{city.City}}
+          <mat-select placeholder="Водный объект" [(ngModel)]="editChemicalOxygenField.IdWaterObject" name="IdWaterObject">
+            <mat-option *ngFor="let waterObject of waterObjects" [value]="waterObject.Id">
+              {{waterObject.WaterObject}}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
       <div style="display:inline-block">
-        <button mat-raised-button color="primary" [disabled]="!newForm.valid" (click)="EditRadiation()">Изменить</button>
+        <button mat-raised-button color="primary" [disabled]="!newForm.valid" (click)="EditChemicalOxygen()">Изменить</button>
       </div>
 
     </form>
@@ -42,52 +39,52 @@
     </ngx-spinner>
     <form #Form="ngForm" class="form-card ">
       <mat-form-field class="input-width">
-        <input matInput [(ngModel)]="newRadiation.Dose" name="Dose" placeholder="Доза" required>
+        <input matInput [(ngModel)]="newChemicalOxygen.Dose" name="Dose" placeholder="Доза" required>
       </mat-form-field>
 
       <mat-form-field class="input-width">
-        <mat-select placeholder="Населенный пункт" [(ngModel)]="newRadiation.IdCity" name="IdCity" required>
-          <mat-option *ngFor="let city of cities" [value]="city.Id">
-            {{city.City}}
+        <mat-select placeholder="Водный объект" [(ngModel)]="newChemicalOxygen.IdWaterObject" name="IdWaterObject" required>
+          <mat-option *ngFor="let waterObject of waterObjects" [value]="waterObject.Id">
+            {{waterObject.WaterObject}}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="Form.invalid">Населенный пункт обязателен</mat-error>
+        <mat-error *ngIf="Form.invalid">Водный объект обязателен</mat-error>
       </mat-form-field>
 
       <div style="display:inline-block">
-        <button mat-raised-button color="primary" [disabled]="!Form.valid" (click)="AddRadiation()">
+        <button mat-raised-button color="primary" [disabled]="!Form.valid" (click)="AddChemicalOxygen()">
           Добавить
         </button>
       </div>
 
     </form>
-    <h1>Показатели радиации</h1>
+    <h1>Показатели химического потребления кислорода</h1>
     <div class="form-outline search-width">
-      <input class="form-control" type="search" [(ngModel)]="queryString" id="search" placeholder="Поиск по населенному пункту">
+      <input class="form-control" type="search" [(ngModel)]="queryString" id="search" placeholder="Поиск по водному объекту">
     </div>
     <table class="table table-striped" matSort (matSortChange)="sortData($event)">
       <thead>
         <tr class="head">
           <td mat-sort-header="Id">Id</td>
           <td mat-sort-header="Dose">Доза</td>
-          <td mat-sort-header="Level">Уровень</td>
+          <td mat-sort-header="Level">Степень загрязнения</td>
           <td>Сотрудник</td>
-          <td>Населенный пункт</td>
+          <td>Водный объект</td>
           <td mat-sort-header="Date">Дата</td>
           <td></td>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of sortedData | FilterCityPipe: queryString">
+        <tr *ngFor="let item of sortedData | FilterWaterObjectPipe: queryString">
           <td>{{item.Id}}</td>
-          <td>{{item.Dose}} мкЗв/ч</td>
+          <td>{{item.Dose}} мг/дм3</td>
           <td>{{item.Level}}</td>
           <td>{{item.User.Surname}} {{item.User.Name}}</td>
-          <td>{{item.City.City}}</td>
+          <td>{{item.WaterObject.WaterObject}}</td>
           <td>{{item.Date | dateFormatPipe}}</td>
           <td style="width:150px; text-align:center">
             <input type="button" value="Изменить" (click)="edit(item)" class="btn btn-secondary button" />
-            <input type="button" value="Удалить" (click)="delRadiation(item.Id)" class="btn btn-danger button" />
+            <input type="button" value="Удалить" (click)="delChemicalOxygen(item.Id)" class="btn btn-danger button" />
           </td>
         </tr>
       </tbody>
