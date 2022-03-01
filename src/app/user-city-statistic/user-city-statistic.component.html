@@ -1,0 +1,97 @@
+<app-main-nav>
+  <mat-card class="profile-card center">
+
+    <mat-card-header>
+      <mat-card-title>Статистика уровней радиации</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div id="chart" *ngIf="levelRadiationStatistic">
+        <apx-chart [series]="chartOptions.series"
+                   [chart]="chartOptions.chart"
+                   [labels]="chartOptions.labels"
+                   [legend]="chartOptions.legend"
+                   [dataLabels]="chartOptions.dataLabels"
+                   [responsive]="chartOptions.responsive"></apx-chart>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="profile-card center">
+    <mat-card-header>
+      <mat-card-title>Статистика уровней двуокиси азота</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div id="chart" *ngIf="levelAzotStatistic">
+        <apx-chart [series]="chartOptionsAzot.series"
+                   [chart]="chartOptionsAzot.chart"
+                   [labels]="chartOptionsAzot.labels"
+                   [legend]="chartOptionsAzot.legend"
+                   [dataLabels]="chartOptionsAzot.dataLabels"
+                   [responsive]="chartOptionsAzot.responsive"></apx-chart>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="profile-card center">
+    <mat-card-header>
+      <mat-card-title>Статистика уровней озона</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div id="chart" *ngIf="levelOzonStatistic">
+        <apx-chart [series]="chartOptionsOzon.series"
+                   [chart]="chartOptionsOzon.chart"
+                   [labels]="chartOptionsOzon.labels"
+                   [legend]="chartOptionsOzon.legend"
+                   [dataLabels]="chartOptionsOzon.dataLabels"
+                   [responsive]="chartOptionsOzon.responsive"></apx-chart>
+      </div>
+    </mat-card-content>
+  </mat-card>  <mat-card class="profile-card center">
+    <mat-card-header>
+      <mat-card-title>Статистика уровней PM2.5</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div id="chart" *ngIf="levelPmStatistic">
+        <apx-chart [series]="chartOptionsPm.series"
+                   [chart]="chartOptionsPm.chart"
+                   [labels]="chartOptionsPm.labels"
+                   [legend]="chartOptionsPm.legend"
+                   [dataLabels]="chartOptionsPm.dataLabels"
+                   [responsive]="chartOptionsPm.responsive"></apx-chart>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="profile-card center">
+    <mat-card-header>
+      <mat-card-title>Статистика уровней PM10</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div id="chart" *ngIf="levelPm10Statistic">
+        <apx-chart [series]="chartOptionsPm10.series"
+                   [chart]="chartOptionsPm10.chart"
+                   [labels]="chartOptionsPm10.labels"
+                   [legend]="chartOptionsPm10.legend"
+                   [dataLabels]="chartOptionsPm10.dataLabels"
+                   [responsive]="chartOptionsPm10.responsive"></apx-chart>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="profile-card center">
+    <mat-card-header>
+      <mat-card-title>Статистика уровней двуокиси серы</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div id="chart" *ngIf="levelSeraStatistic">
+        <apx-chart [series]="chartOptionsSera.series"
+                   [chart]="chartOptionsSera.chart"
+                   [labels]="chartOptionsSera.labels"
+                   [legend]="chartOptionsSera.legend"
+                   [dataLabels]="chartOptionsSera.dataLabels"
+                   [responsive]="chartOptionsSera.responsive"></apx-chart>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+</app-main-nav>

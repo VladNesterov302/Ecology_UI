@@ -17,6 +17,11 @@ import { UserSeraComponent } from './user-sera/user-sera.component';
 import { UserPhComponent } from './user-ph/user-ph.component';
 import { UserBioOxygenComponent } from './user-bio-oxygen/user-bio-oxygen.component';
 import { UserChemicalOxygenComponent } from './user-chemical-oxygen/user-chemical-oxygen.component';
+import { UserStatisticComponent } from './user-statistic/user-statistic.component';
+import { UserCityComponent } from './user-city/user-city.component';
+import { UserCityStatisticComponent } from './user-city-statistic/user-city-statistic.component';
+import { UserWaterObjectComponent } from './user-water-object/user-water-object.component';
+import { UserWaterObjectStatisticComponent } from './user-water-object-statistic/user-water-object-statistic.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main-page', pathMatch : 'full'},
@@ -30,6 +35,11 @@ const routes: Routes = [
   { path: 'user-ph', component: UserPhComponent },
   { path: 'user-bio-oxygen', component: UserBioOxygenComponent },
   { path: 'user-chemical-oxygen', component: UserChemicalOxygenComponent },
+  { path: 'user-statistic', component: UserStatisticComponent },
+  { path: 'user-city', component: UserCityComponent },
+  { path: 'user-water-object', component: UserWaterObjectComponent },
+  { path: 'user-city-statistic', component: UserCityStatisticComponent },
+  { path: 'user-water-object-statistic', component: UserWaterObjectStatisticComponent },
   { path: 'admin-home', component: AdminHomeComponent },
   { path: 'admin-users', component: AdminUsersComponent },
   { path: 'admin-user-register', component: UserRegisterComponent },

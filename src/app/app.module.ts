@@ -53,6 +53,15 @@ import { UserBioOxygenComponent } from './user-bio-oxygen/user-bio-oxygen.compon
 import { BioOxygenService } from './user-bio-oxygen/Services/biooxygen.service';
 import { UserChemicalOxygenComponent } from './user-chemical-oxygen/user-chemical-oxygen.component';
 import { ChemicalOxygenService } from './user-chemical-oxygen/Services/chemicaloxygen.service';
+import { UserStatisticComponent } from './user-statistic/user-statistic.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { UserCityComponent } from './user-city/user-city.component';
+import { UserCityStatisticComponent } from './user-city-statistic/user-city-statistic.component';
+import { CityStatisticService } from './user-city-statistic/Services/cityStatistic.service';
+import { StatisticService } from './user-statistic/Services/statistic.service';
+import { UserWaterObjectComponent } from './user-water-object/user-water-object.component';
+import { UserWaterObjectStatisticComponent } from './user-water-object-statistic/user-water-object-statistic.component';
+import { WaterObjectStatisticService } from './user-water-object-statistic/Services/waterObjectStatistic.service';
 
 @NgModule({
   declarations: [
@@ -80,7 +89,12 @@ import { ChemicalOxygenService } from './user-chemical-oxygen/Services/chemicalo
     UserSeraComponent,
     UserPhComponent,
     UserBioOxygenComponent,
-    UserChemicalOxygenComponent
+    UserChemicalOxygenComponent,
+    UserStatisticComponent,
+    UserCityComponent,
+    UserCityStatisticComponent,
+    UserWaterObjectComponent,
+    UserWaterObjectStatisticComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +114,8 @@ import { ChemicalOxygenService } from './user-chemical-oxygen/Services/chemicalo
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    OverlayModule
+    OverlayModule,
+    NgApexchartsModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ru-RU' },
@@ -116,6 +131,9 @@ import { ChemicalOxygenService } from './user-chemical-oxygen/Services/chemicalo
     PhService,
     BioOxygenService,
     ChemicalOxygenService,
+    CityStatisticService,
+    StatisticService,
+    WaterObjectStatisticService
     ],
   bootstrap: [AppComponent]
 })

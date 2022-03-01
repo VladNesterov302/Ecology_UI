@@ -1,0 +1,38 @@
+<app-main-nav>
+  <mat-card class="form-card center">
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)"
+                 size="medium"
+                 color="#ffffff"
+                 type="line-spin-fade">
+    </ngx-spinner>
+    <h1>Населенные пункты</h1>
+    <table class="table table-striped" matSort (matSortChange)="sortData($event)">
+      <thead>
+        <tr class="head">
+          <td mat-sort-header="Id">Id</td>
+          <td mat-sort-header="City">Населенный пункт</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of sortedData">
+          <td>{{item.Id}}</td>
+          <td>{{item.City}}</td>
+          <td style="width:150px; text-align:center">
+            <input type="button" value="Статистика" (click)="stat(item)" class="btn btn-primary button" />
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+    <mat-paginator [length]="length"
+                   [pageSize]="pageSize"
+                   [pageIndex]="pageIndex"
+                   [pageSizeOptions]="[10, 15]"
+                   (page)="pageEvent = changePageEvent($event)">
+    </mat-paginator>
+
+  </mat-card>
+</app-main-nav>
+
+
