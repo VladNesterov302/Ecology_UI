@@ -22,6 +22,10 @@ import { UserCityComponent } from './user-city/user-city.component';
 import { UserCityStatisticComponent } from './user-city-statistic/user-city-statistic.component';
 import { UserWaterObjectComponent } from './user-water-object/user-water-object.component';
 import { UserWaterObjectStatisticComponent } from './user-water-object-statistic/user-water-object-statistic.component';
+import { UserCitySmallPredictionComponent } from './user-city-small-prediction/user-city-small-prediction.component';
+import { UserCityBigPredictionComponent } from './user-city-big-prediction/user-city-big-prediction.component';
+import { UserWaterObjectSmallPredictionComponent } from './user-water-object-small-prediction/user-water-object-small-prediction.component';
+import { UserWaterObjectBigPredictionComponent } from './user-water-object-big-prediction/user-water-object-big-prediction.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main-page', pathMatch : 'full'},
@@ -40,6 +44,10 @@ const routes: Routes = [
   { path: 'user-water-object', component: UserWaterObjectComponent },
   { path: 'user-city-statistic', component: UserCityStatisticComponent },
   { path: 'user-water-object-statistic', component: UserWaterObjectStatisticComponent },
+  { path: 'user-city-small-prediction', component: UserCitySmallPredictionComponent },
+  { path: 'user-city-big-prediction', component: UserCityBigPredictionComponent },
+  { path: 'user-water-object-small-prediction', component: UserWaterObjectSmallPredictionComponent },
+  { path: 'user-water-object-big-prediction', component: UserWaterObjectBigPredictionComponent },
   { path: 'admin-home', component: AdminHomeComponent },
   { path: 'admin-users', component: AdminUsersComponent },
   { path: 'admin-user-register', component: UserRegisterComponent },

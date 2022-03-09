@@ -62,6 +62,12 @@ import { StatisticService } from './user-statistic/Services/statistic.service';
 import { UserWaterObjectComponent } from './user-water-object/user-water-object.component';
 import { UserWaterObjectStatisticComponent } from './user-water-object-statistic/user-water-object-statistic.component';
 import { WaterObjectStatisticService } from './user-water-object-statistic/Services/waterObjectStatistic.service';
+import { UserCitySmallPredictionComponent } from './user-city-small-prediction/user-city-small-prediction.component';
+import { SmallPredictionService } from './user-city-small-prediction/Services/smallPrediction.service';
+import { UserCityBigPredictionComponent } from './user-city-big-prediction/user-city-big-prediction.component';
+import { BigPredictionService } from './user-city-big-prediction/Services/bigPrediction.service';
+import { UserWaterObjectSmallPredictionComponent } from './user-water-object-small-prediction/user-water-object-small-prediction.component';
+import { UserWaterObjectBigPredictionComponent } from './user-water-object-big-prediction/user-water-object-big-prediction.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +100,11 @@ import { WaterObjectStatisticService } from './user-water-object-statistic/Servi
     UserCityComponent,
     UserCityStatisticComponent,
     UserWaterObjectComponent,
-    UserWaterObjectStatisticComponent
+    UserWaterObjectStatisticComponent,
+    UserCitySmallPredictionComponent,
+    UserCityBigPredictionComponent,
+    UserWaterObjectSmallPredictionComponent,
+    UserWaterObjectBigPredictionComponent
   ],
   imports: [
     BrowserModule,
@@ -133,7 +143,9 @@ import { WaterObjectStatisticService } from './user-water-object-statistic/Servi
     ChemicalOxygenService,
     CityStatisticService,
     StatisticService,
-    WaterObjectStatisticService
+    WaterObjectStatisticService,
+    SmallPredictionService,
+    BigPredictionService,
     ],
   bootstrap: [AppComponent]
 })

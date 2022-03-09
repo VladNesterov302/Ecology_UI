@@ -1,0 +1,69 @@
+<app-main-nav>
+  <mat-card class="form-card center">
+    <h2>Долгосрочный прогноз - {{city}} </h2>
+
+    <div class="info" *ngIf="predictionRadiation">
+      <h4 style="font-style:italic; text-align:center">Прогноз по радиации</h4>
+      <div>
+        <p>Прогнозируемый уровень радиации: <span style="font-weight:500; font-style:italic">{{predictionRadiation}} мкЗв/ч</span> </p>
+        <p *ngIf="predictionRadiation < 0.1">Уровень радиации: <span style="font-weight:500; font-style:italic">1 уровень</span> </p>
+        <p *ngIf="predictionRadiation >= 0.1 && predictionRadiation < 0.2">Уровень радиации: <span style="font-weight:500; font-style:italic">2 уровень</span> </p>
+        <p *ngIf="predictionRadiation >= 0.2 && predictionRadiation < 0.3">Уровень радиации: <span style="font-weight:500; font-style:italic">3 уровень</span> </p>
+        <p *ngIf="predictionRadiation >= 0.3 && predictionRadiation < 0.5">Уровень радиации: <span style="font-weight:500; font-style:italic">4 уровень</span> </p>
+        <p *ngIf="predictionRadiation >= 0.5">Уровень радиации: <span style="font-weight:500; font-style:italic">5 уровень</span> </p>
+        <hr>
+      </div>
+    </div>
+
+    <div class="info" *ngIf="predictionAzot">
+      <h4 style="font-style:italic; text-align:center">Прогноз по двуокиси азота</h4>
+      <div>
+        <p>Прогнозируемый уровень двуокиси азота: <span style="font-weight:500; font-style:italic">{{predictionAzot}} мкг/м3</span> </p>
+        <p *ngIf="predictionAzot < 25">Уровень двуокиси азота: <span style="font-weight:500; font-style:italic">Норма</span> </p>
+        <p *ngIf="predictionAzot >= 25">Уровень двуокиси азота: <span style="font-weight:500; font-style:italic">Превышение</span> </p>
+        <hr>
+      </div>
+    </div>
+
+    <div class="info" *ngIf="predictionOzon">
+      <h4 style="font-style:italic; text-align:center">Прогноз по озона</h4>
+      <div>
+        <p>Прогнозируемый уровень озона: <span style="font-weight:500; font-style:italic">{{predictionOzon}} мкг/м3</span> </p>
+        <p *ngIf="predictionOzon < 100">Уровень озона: <span style="font-weight:500; font-style:italic">Норма</span> </p>
+        <p *ngIf="predictionOzon >= 100">Уровень озона: <span style="font-weight:500; font-style:italic">Превышение</span> </p>
+        <hr>
+      </div>
+    </div>
+
+    <div class="info" *ngIf="predictionPm">
+      <h4 style="font-style:italic; text-align:center">Прогноз по взвешенным частицам PM2.5</h4>
+      <div>
+        <p>Прогнозируемый уровень взвешенных частиц: <span style="font-weight:500; font-style:italic">{{predictionPm}} мкг/м3</span> </p>
+        <p *ngIf="predictionPm < 15">Уровень взвешенных частиц: <span style="font-weight:500; font-style:italic">Норма</span> </p>
+        <p *ngIf="predictionPm >= 15">Уровень взвешенных частиц: <span style="font-weight:500; font-style:italic">Превышение</span> </p>
+        <hr>
+      </div>
+    </div>
+
+    <div class="info" *ngIf="predictionPm10">
+      <h4 style="font-style:italic; text-align:center">Прогноз по взвешенным частицам PM10</h4>
+      <div>
+        <p>Прогнозируемый уровень взвешенных частиц: <span style="font-weight:500; font-style:italic">{{predictionPm10}} мкг/м3</span> </p>
+        <p *ngIf="predictionPm10 < 45">Уровень взвешенных частиц: <span style="font-weight:500; font-style:italic">Норма</span> </p>
+        <p *ngIf="predictionPm10 >= 45">Уровень взвешенных частиц: <span style="font-weight:500; font-style:italic">Превышение</span> </p>
+        <hr>
+      </div>
+    </div>
+
+    <div class="info" *ngIf="predictionSera">
+      <h4 style="font-style:italic; text-align:center">Прогноз по двуокиси серы</h4>
+      <div>
+        <p>Прогнозируемый уровень двуокиси серы: <span style="font-weight:500; font-style:italic">{{predictionSera}} мкг/м3</span> </p>
+        <p *ngIf="predictionSera < 40">Уровень двуокиси серы: <span style="font-weight:500; font-style:italic">Норма</span> </p>
+        <p *ngIf="predictionSera >= 40">Уровень двуокиси серы: <span style="font-weight:500; font-style:italic">Превышение</span> </p>
+        <hr>
+      </div>
+    </div>
+
+  </mat-card>
+</app-main-nav>

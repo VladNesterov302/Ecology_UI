@@ -4,17 +4,12 @@
   width: 100%;
 }
 
-.input-width {
-  width: 50%;
-  margin-right: 40px;
+.full-width {
+  width: 100%;
 }
 
 .form-card {
   max-width: 1500px;
-}
-
-form {
-  text-align: center
 }
 
 .center {
@@ -26,15 +21,14 @@ form {
   margin-top: 20px;
 }
 
-.table {
-  width: 70%;
-  margin: auto;
+.info {
+  padding: 20px;
+  background-color: #337c003d;
+  border-radius: 5px;
+  margin-bottom: 15px;
 }
 
-h1 {
-  text-align: center;
-}
-.button {
-  width: 220px;
-  margin-bottom: 10px;
+p {
+  margin-bottom: 4px;
+  font-size: 18px;
 }

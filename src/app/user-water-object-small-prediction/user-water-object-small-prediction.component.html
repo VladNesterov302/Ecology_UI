@@ -1,0 +1,50 @@
+<app-main-nav>
+  <mat-card class="form-card center">
+    <h2>Кроткосрочный прогноз - {{waterObject}} </h2>
+
+    <div class="info" *ngIf="predictionBioOxygen">
+      <h4 style="font-style:italic; text-align:center">Прогноз по биохимическому кислороду</h4>
+      <div>
+        <p>Прогнозируемый уровень биохимического кислорода: <span style="font-weight:500; font-style:italic">{{predictionBioOxygen}} мг/дм3</span> </p>
+        <p *ngIf="predictionBioOxygen < 1">Тип водоема: <span style="font-weight:500; font-style:italic">Очень чистый</span> </p>
+        <p *ngIf="predictionBioOxygen >= 1 && predictionBioOxygen < 2">Тип водоема: <span style="font-weight:500; font-style:italic">Чистый</span> </p>
+        <p *ngIf="predictionBioOxygen >= 2 && predictionBioOxygen < 3">Тип водоема: <span style="font-weight:500; font-style:italic">Умеренно загрязненный</span> </p>
+        <p *ngIf="predictionBioOxygen >= 3 && predictionBioOxygen < 4">Тип водоема: <span style="font-weight:500; font-style:italic">Загрязненный</span> </p>
+        <p *ngIf="predictionBioOxygen >= 4 && predictionBioOxygen < 10">Тип водоема: <span style="font-weight:500; font-style:italic">Грязный</span> </p>
+        <p *ngIf="predictionBioOxygen >= 10">Тип водоема: <span style="font-weight:500; font-style:italic">Очень грязный</span> </p>
+        <hr>
+      </div>
+    </div>
+
+    <div class="info" *ngIf="predictionChemicalOxygen">
+      <h4 style="font-style:italic; text-align:center">Прогноз по химическому кислороду</h4>
+      <div>
+        <p>Прогнозируемый уровень химическому кислорода: <span style="font-weight:500; font-style:italic">{{predictionChemicalOxygen}} мг/дм3</span> </p>
+        <p *ngIf="predictionChemicalOxygen < 1">Тип водоема: <span style="font-weight:500; font-style:italic">Очень чистый</span> </p>
+        <p *ngIf="predictionChemicalOxygen >= 1 && predictionChemicalOxygen < 2">Тип водоема: <span style="font-weight:500; font-style:italic">Чистый</span> </p>
+        <p *ngIf="predictionChemicalOxygen >= 2 && predictionChemicalOxygen < 3">Тип водоема: <span style="font-weight:500; font-style:italic">Умеренно загрязненный</span> </p>
+        <p *ngIf="predictionChemicalOxygen >= 3 && predictionChemicalOxygen < 4">Тип водоема: <span style="font-weight:500; font-style:italic">Загрязненный</span> </p>
+        <p *ngIf="predictionChemicalOxygen >= 4 && predictionChemicalOxygen < 15">Тип водоема: <span style="font-weight:500; font-style:italic">Грязный</span> </p>
+        <p *ngIf="predictionChemicalOxygen >= 15">Тип водоема: <span style="font-weight:500; font-style:italic">Очень грязный</span> </p>
+        <hr>
+      </div>
+    </div>
+
+    <div class="info" *ngIf="predictionPh">
+      <h4 style="font-style:italic; text-align:center">Прогноз по кислотности вод</h4>
+      <div>
+        <p>Прогнозируемый уровень кислотности: <span style="font-weight:500; font-style:italic">{{predictionPh}} pH</span> </p>
+        <p *ngIf="predictionPh < 3">Тип вод: <span style="font-weight:500; font-style:italic">Сильнокислые воды</span> </p>
+        <p *ngIf="predictionPh >= 3 && predictionPh < 5">Тип вод: <span style="font-weight:500; font-style:italic">Кислые воды</span> </p>
+        <p *ngIf="predictionPh >= 5 && predictionPh < 6.5">Тип вод: <span style="font-weight:500; font-style:italic">Слабокислые воды</span> </p>
+        <p *ngIf="predictionPh >= 6.5 && predictionPh < 7.5">Тип вод: <span style="font-weight:500; font-style:italic">Нейтральные воды</span> </p>
+        <p *ngIf="predictionPh >= 7.5 && predictionPh < 8.5">Тип вод: <span style="font-weight:500; font-style:italic">Слабощелочные воды</span> </p>
+        <p *ngIf="predictionPh >= 8.5 && predictionPh < 9.5">Тип вод: <span style="font-weight:500; font-style:italic">Щелочные воды</span> </p>
+        <p *ngIf="predictionPh >= 9.5">Тип вод: <span style="font-weight:500; font-style:italic">Сильнощелочные воды</span> </p>
+        <hr>
+      </div>
+    </div>
+
+
+  </mat-card>
+</app-main-nav>

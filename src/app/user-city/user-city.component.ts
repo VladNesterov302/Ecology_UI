@@ -50,6 +50,18 @@ export class UserCityComponent implements OnInit {
     this.router.navigate(['/user-city-statistic']);
   }
 
+  smallPrediction(city: City) {
+    localStorage.setItem('cityId', city.Id.toString());
+    localStorage.setItem('city', city.City);
+    this.router.navigate(['/user-city-small-prediction']);
+  }
+
+  bigPrediction(city: City) {
+    localStorage.setItem('cityId', city.Id.toString());
+    localStorage.setItem('city', city.City);
+    this.router.navigate(['/user-city-big-prediction']);
+  }
+
   public changePageEvent(event?: PageEvent) {
     if (event != null) {
       this.pageIndex = event.pageIndex;

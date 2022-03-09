@@ -20,6 +20,8 @@
           <td>{{item.City}}</td>
           <td style="width:150px; text-align:center">
             <input type="button" value="Статистика" (click)="stat(item)" class="btn btn-primary button" />
+            <input type="button" value="Кроткосрочный прогноз" (click)="smallPrediction(item)" class="btn btn-success button" />
+            <input type="button" value="Долгосрочный прогноз" (click)="bigPrediction(item)" class="btn btn-success button" />
           </td>
         </tr>
       </tbody>

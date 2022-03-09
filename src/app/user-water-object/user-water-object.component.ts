@@ -50,6 +50,17 @@ export class UserWaterObjectComponent implements OnInit {
     this.router.navigate(['/user-water-object-statistic']);
   }
 
+  smallPrediction(waterObject: WaterObject) {
+    localStorage.setItem('waterObjectId', waterObject.Id.toString());
+    localStorage.setItem('waterObject', waterObject.WaterObject);
+    this.router.navigate(['/user-water-object-small-prediction']);
+  }
+
+  bigPrediction(waterObject: WaterObject) {
+    localStorage.setItem('waterObjectId', waterObject.Id.toString());
+    localStorage.setItem('waterObject', waterObject.WaterObject);
+    this.router.navigate(['/user-water-object-big-prediction']);
+  }
   public changePageEvent(event?: PageEvent) {
     if (event != null) {
       this.pageIndex = event.pageIndex;
